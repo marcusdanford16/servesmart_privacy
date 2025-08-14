@@ -1,0 +1,139 @@
+/* Basic responsive styles omitted for brevity — from earlier message */
+/* --------- CSS Reset (modern minimal) --------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+img { max-width: 100%; display: block; height: auto; }
+button, input, select, textarea { font: inherit; }
+
+/* --------- Theme --------- */
+:root{
+  --bg: #0b0f14;
+  --panel: #0f1520;
+  --panel-2: #121a26;
+  --text: #e8eef7;
+  --muted: #a9b6c8;
+  --brand: #5aa1ff;
+  --accent: #8ee6a6;
+  --ring: rgba(90,161,255,0.35);
+  --radius: 16px;
+  --shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+@media (prefers-color-scheme: light) {
+  :root{
+    --bg: #f7fbff;
+    --panel: #ffffff;
+    --panel-2: #f1f6ff;
+    --text: #0f172a;
+    --muted: #4b5563;
+    --brand: #2563eb;
+    --accent: #059669;
+    --ring: rgba(37,99,235,0.25);
+  }
+}
+
+/* --------- Base --------- */
+body{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  color: var(--text);
+  background: radial-gradient(1200px 800px at 10% -10%, var(--panel-2), transparent 60%), var(--bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container{ width: min(1100px, 92%); margin-inline: auto; }
+
+/* --------- Header --------- */
+.site-header{
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent);
+  position: sticky;
+  top: 0; backdrop-filter: blur(6px);
+  z-index: 10;
+}
+.header-wrap{
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 0;
+}
+.brand{
+  display: inline-flex; align-items: center; gap: 10px;
+  text-decoration: none; color: var(--text); font-weight: 700;
+}
+.brand-logo{ font-size: 1.4rem; }
+.brand-name{ letter-spacing: 0.2px; }
+
+.top-nav .nav-link{
+  color: var(--muted); text-decoration: none; padding: 8px 10px; border-radius: 10px;
+}
+.top-nav .nav-link:hover, .top-nav .nav-link.is-active{
+  color: var(--text); background: rgba(90,161,255,0.12); outline: 1px solid rgba(90,161,255,0.2);
+}
+
+/* --------- Hero --------- */
+.hero{
+  display: grid; gap: 26px;
+  grid-template-columns: 1fr; align-items: center;
+  background: linear-gradient(180deg, rgba(90,161,255,0.08), transparent 60%);
+  padding: 32px 0 6px;
+}
+.hero-text h1{
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  line-height: 1.2; margin: 6px 0 10px;
+}
+.lede{ color: var(--muted); max-width: 60ch; }
+.meta{ color: var(--muted); margin-top: 8px; }
+
+.hero-media{
+  justify-self: center; width: min(560px, 100%);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+  box-shadow: var(--shadow);
+  padding: 16px;
+}
+
+/* --------- Policy Article --------- */
+.policy{
+  margin: 26px 0 60px;
+  background: var(--panel);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: calc(var(--radius) + 6px);
+  box-shadow: var(--shadow);
+  padding: clamp(18px, 3.2vw, 32px);
+}
+.policy h2{
+  font-size: clamp(1.15rem, 2.4vw, 1.35rem);
+  margin: 22px 0 10px;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(255,255,255,0.09);
+}
+.policy p, .policy ul{ margin: 8px 0 0; }
+.policy ul{ padding-left: 1.1rem; }
+.policy a{ color: var(--brand); }
+.policy a:focus-visible{
+  outline: 3px solid var(--ring); border-radius: 6px; outline-offset: 2px;
+}
+
+/* --------- Footer --------- */
+.site-footer{
+  border-top: 1px solid rgba(255,255,255,0.08);
+  background: linear-gradient(0deg, rgba(255,255,255,0.03), transparent);
+}
+.footer-wrap{
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; padding: 20px 0 36px;
+}
+.footer-nav .nav-link{ color: var(--muted); text-decoration: none; margin-left: 12px; }
+.footer-nav .nav-link:hover{ color: var(--text); }
+
+/* --------- Responsive Layout --------- */
+@media (min-width: 860px){
+  .hero { grid-template-columns: 1.2fr 1fr; }
+}
+
+/* --------- Reduced Motion --------- */
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
